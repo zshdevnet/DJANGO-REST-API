@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Gallery</title>
+</head>
+<body>
+    <h1>Gallery</h1>
+    {% for photo in photos %}
+        <div style="margin-bottom: 30px;">
+            <h3>{{ photo.title }}</h3>
+            <img src="{{ photo.image }}" alt="photo" style="width: 300px;"><br>
+            <form action="/like/{{ photo.id }}/" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">❤️ Like ({{ photo.likes }})</button>
+            </form>
+            <form action="/dislike/{{ photo.id }}/" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">👎 Dislike ({{ photo.dislikes }})</button>
+            </form>
+        </div>
+    {% endfor %}
+</body>
+</html>
