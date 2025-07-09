@@ -3,10 +3,11 @@ import requests
 from django.views.decorators.csrf import csrf_exempt
 import os
 
+
 # Call the API and show the gallery
 def gallery_view(request):
 
-    BASE_API_URL = os.getenv("API_BASE_URL") #FALLBACK OR LOCAL
+    BASE_API_URL = os.getenv("API_BASE_URL")  # FALLBACK OR LOCAL
 
     try:
         response = requests.get(f"{BASE_API_URL}/api/photos/")
@@ -16,6 +17,7 @@ def gallery_view(request):
         photos = []
         print("API error: ", e)
         return render(request, "gallery.html", {"photos": photos})
+
 
 @csrf_exempt
 def like_photo(request, photo_id):
