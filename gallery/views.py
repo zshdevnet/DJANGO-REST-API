@@ -6,7 +6,7 @@ import os
 # Call the API and show the gallery
 def gallery_view(request):
 
-    BASE_API_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8000") #FALLBACK OR LOCAL
+    BASE_API_URL = os.getenv("API_BASE_URL") #FALLBACK OR LOCAL
 
     try:
         response = requests.get(f"{BASE_API_URL}/api/photos/")
